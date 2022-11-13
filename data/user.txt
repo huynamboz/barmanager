@@ -1,0 +1,4 @@
+﻿KH1,admin,0,teahuynam2003@gmail.com,Trịnh Huy Nam,Nam,0987888555,04/03/2003,Tam Kỳ,manager,quản lý
+KH2,son,0,huynamtricker@gmail.com,Trung Sơn,Nam,0987999867,02/09/2003,Đà Nẵng,staff,nhân viên
+KH3,leanh00,leanh1999,leanh@gmail.com,Lê Ánh Hoàng,Nữ,0988667733,02/10/1999,Hà Nội,staff,Pha chế
+KH5,huanhoang,huan1,huan0568@gmail.com,Hoàng Huân,Nữ,0357909999,02/10/1999,Tam Kỳ,staff,Dọn toa let
