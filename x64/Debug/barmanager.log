@@ -1,2 +1,9 @@
-﻿  manageFood.cpp
+﻿  barmanager.cpp
+  CTDL.cpp
+  dontedit.cpp
+D:\code\github\barmanager\dontedit.cpp(8,57): warning C4273: 'SetConsoleTitleW': inconsistent dll linkage
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.19041.0\um\consoleapi2.h(510,1): message : see previous definition of 'SetConsoleTitleW'
+  manageFood.cpp
+  run.cpp
+  Generating Code...
   barmanager.vcxproj -> D:\code\github\barmanager\x64\Debug\barmanager.exe

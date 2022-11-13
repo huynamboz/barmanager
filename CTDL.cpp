@@ -16,32 +16,66 @@ string user::getUsername() {
 string user::getPassword() {
 	return this->password;
 }
-user::user(string id, string username, string pass,string name, string email,
-	string gender, string phone, string birthday, string adds,
-	string perm, string pos) {
-	this->ID = id;
-	this->email = email;
-	this->password = pass;
-	this->name = name;
-	this->gender = gender;
-	this->pNum = phone;
-	this->bdate = birthday;
-	this->address = adds;
-	this->permiss = perm;
-	this->position = pos;
+
+
+//----------------food------------//
+food::food(food &f) {
+	this->ID = f.ID;
+	this->category = f.category;
+	this->name = f.name;
+	this->type = f.type;
+	this->qty = f.qty;
+	this->cost = f.cost;
 	this->next = NULL;
 }
-void ListUser::addNewUser(user p) {
-	count++;
-	user* newUser = new user(p);
-	if (head == NULL) {
-		head = newUser;
-	}
-	else {
-		newUser->next = head;
-		head = newUser;
-	}
+food::food(string id, string cate, string name, string type,
+	int qty, int cost) {
+	this->ID = id;
+	this->category = cate;
+	this->name = name;
+	this->type = type;
+	this->qty = qty;
+	this->cost = cost;
+	this->next = NULL;
 }
-void ListUser::showAllData() {
+ListFood::ListFood() {
 
 }
+ostream& operator <<(ostream& out, const ListFood& f) {
+	out << " cac san pham la ";
+	food* tmp = f.head;
+	while (tmp != NULL) {
+		out << tmp->ID << tmp->category <<
+			tmp->name << " " << tmp->type << " " << tmp->qty << " " << tmp->cost;
+		out << endl;
+		tmp = tmp->next;
+	}
+	out << "<<<<";
+
+	return out;
+}
+istream& operator >> (istream& in, food& f) {
+	cout << "nhap id"; getline(in,f.ID);
+	cout << "nhap loai :"; getline(in, f.category);
+	cout << "nhap ten "; getline(in, f.name);
+	cout << "nhap so luong "; in >> f.qty;
+	cout << "nhap gia "; in >> f.cost;
+	in.ignore();
+	return in;
+}
+string food::ToString() {
+	return ID + "," + category + "," + name + "," + type + "," +
+		std::to_string(qty) + "," + std::to_string(cost);
+}
+
+void ListFood::addNewFood( food& f) {
+	food* newFood = new food(f);
+	if (head == NULL) {
+		head = newFood;
+	}
+	else {
+		newFood->next = head;
+		head = newFood;
+	}
+}
+

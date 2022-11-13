@@ -5,7 +5,7 @@ class user {
 	string username;
 	string password;
 public:
-	user* next;
+
 	string ID;
 	string email;
 	string name;
@@ -22,15 +22,30 @@ public:
 
 	string getUsername();
 	string getPassword();
-	user(string, string, string, string, string, string
-		, string, string, string, string, string);
+	
 };
 
-class ListUser : public user {
+class food {
+	
 public:
-	user* head;
-	int count;
-	ListUser();
-	void addNewUser(user);
-	void showAllData();
+	food* next;
+	string ID;
+	string category;
+	string name;
+	string type;
+	int qty;
+	int cost;
+	string ToString();
+	food() {};
+	food(string, string, string, string, int, int);
+	food(food &);
+	friend istream& operator >>(istream&, food&);
+};
+
+class ListFood :public food{
+public:
+	food* head;
+	ListFood();
+	friend ostream& operator <<(ostream&, const ListFood&);
+	void addNewFood( food&);
 };

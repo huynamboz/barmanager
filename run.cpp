@@ -16,6 +16,8 @@ void readUserData() {
 	//cin.ignore();
 	
 	infile.open("user.txt", ios_base::in);
+	infile.ignore();
+	infile.ignore(); 
 	while (infile.eof() != true) {
 		getline(infile, userItem[k].ID, ',');
 		string username, pass;
@@ -31,6 +33,8 @@ void readUserData() {
 		getline(infile, userItem[k].address, ',');
 		getline(infile, userItem[k].permiss, ',');
 		getline(infile, userItem[k].position);
+		/*gotoXY(0, k); cout << userItem[k].Tostring();
+		getchar();*/
 		k++;
 		countUser = k;
 	};
@@ -116,7 +120,7 @@ void startMenu() {
 	gotoXY(50, 15); cout << char(192);
 	//---kết thúc vẽ khung--//
 
-	ListUser L1;
+	
 	do {
 
 		gotoXY(64, 1); cout << char(175) << " CHUC NANG " << char(174);
@@ -135,7 +139,7 @@ void startMenu() {
 		switch(choose) {
 		case 1: {
 			 manageFood();
-			
+			 cout << "hoo";
 			break;
 		}
 		case 2: {
@@ -165,7 +169,9 @@ void startMenu() {
 
 int run() {
 	window();
-	loginMenu();//kiểm tra thử đăng nhập có ok hay k
+	
+	
+	//loginMenu();//kiểm tra thử đăng nhập có ok hay k
 	startMenu();
 	cout << "pass";
 
