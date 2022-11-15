@@ -33,3 +33,16 @@ public:
 	void showPage(int);
 };
 ```
+
+</br> Using 
+
+```cpp
+int main(){
+List L1;
+food f1;
+
+L1.addNewFood(f1); // create node and add to linkedlist
+}
+```
+
+</br> Have good day :))) 
