@@ -49,3 +49,5 @@ void TextColor(int color);
 //end----------------------Screen----------------------end
 
 void SetColor(WORD color);
+void clearSpaceBehindFunc();
+void clearMenu();

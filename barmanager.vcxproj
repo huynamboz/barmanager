@@ -139,6 +139,10 @@
     <ClInclude Include="Header.h" />
     <ClInclude Include="run.h" />
   </ItemGroup>
+  <ItemGroup>
+    <Text Include="foodData.txt" />
+    <Text Include="user.txt" />
+  </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
   </ImportGroup>
