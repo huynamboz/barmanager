@@ -128,7 +128,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="barmanager.cpp" />
-    <ClCompile Include="CTDL.cpp" />
+    <ClCompile Include="CTDL_food.cpp" />
     <ClCompile Include="dontedit.cpp" />
     <ClCompile Include="manageFood.cpp" />
     <ClCompile Include="run.cpp" />

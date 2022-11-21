@@ -99,30 +99,30 @@ void loginMenu() {
 void startMenu() {
 	int ok = 1;
 
-	//vẽ khung
-	gotoXY(50, 1);
-	SetColor(11);
-	for (int x = 50; x <= 90; x++) {
-		gotoXY(x, 0);
-		cout << char(196);
-		gotoXY(x, 15);
-		cout << char(196);
-	}
-	for (int y = 1; y <= 15; y++) {
-		gotoXY(50, y);
-		cout << char(179);
-		gotoXY(90, y);
-		cout << char(179);
-	}
-	gotoXY(50, 0); cout << char(218);
-	gotoXY(90, 0); cout << char(191);
-	gotoXY(90, 15); cout << char(217);
-	gotoXY(50, 15); cout << char(192);
-	//---kết thúc vẽ khung--//
+	
 
 	
 	do {
-
+		//vẽ khung
+		gotoXY(50, 1);
+		SetColor(11);
+		for (int x = 50; x <= 90; x++) {
+			gotoXY(x, 0);
+			cout << char(196);
+			gotoXY(x, 15);
+			cout << char(196);
+		}
+		for (int y = 1; y <= 15; y++) {
+			gotoXY(50, y);
+			cout << char(179);
+			gotoXY(90, y);
+			cout << char(179);
+		}
+		gotoXY(50, 0); cout << char(218);
+		gotoXY(90, 0); cout << char(191);
+		gotoXY(90, 15); cout << char(217);
+		gotoXY(50, 15); cout << char(192);
+		//---kết thúc vẽ khung--//
 		gotoXY(64, 1); cout << char(175) << " CHUC NANG " << char(174);
 		gotoXY(52, 2); cout << " 1" << char(175) << " Quan ly vat pham ";
 		gotoXY(52, 3); cout << " 2" << char(175) << " Dat ban - dat ban truoc ";
@@ -139,7 +139,6 @@ void startMenu() {
 		switch(choose) {
 		case 1: {
 			 manageFood();
-			 cout << "hoo";
 			break;
 		}
 		case 2: {

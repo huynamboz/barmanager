@@ -1,5 +1,9 @@
-#include "Header.h"
+﻿#include "Header.h"
+
+
 using namespace std;
+
+
 void user::setUsername(string u) {
 	this->username = u;
 }
@@ -210,76 +214,148 @@ food &ListFood::setData() {
 	f2.ID = "FK" + std::to_string(this->count + 1);
 	/*--nhap loai--*/
 	gotoXY(4, 10); cout << "Nhap loai " << char(175) << " ";
-	getline(cin, cate); f2.category = cate;
+	getline(cin, cate); f2.setCategory(cate);
 	clearSpaceBehindFunc();
-
 
 	/*--nhap ten--*/
 	gotoXY(4, 10); cout << "Nhap ten " << char(175) << " ";
-	getline(cin, name); f2.name = name;
+	getline(cin, name); f2.setName(name);
 	clearSpaceBehindFunc();
 
 	/*--nhap ten--*/
 	gotoXY(4, 10); cout << "Nhap don vi " << char(175) << " ";
-	getline(cin, type); f2.type = type;
+	getline(cin, type); f2.setType(type);
 	clearSpaceBehindFunc();
 
 	/*--nhap ten--*/
 	gotoXY(4, 10); cout << "Nhap so luong " << char(175) << " ";
-	cin >> qty; f2.qty = qty;
+	cin >> qty; f2.setQty(qty);
 	clearSpaceBehindFunc();
 
 	/*--nhap ten--*/
 	gotoXY(4, 10); cout << "Nhap don gia " << char(175) << " ";
-	cin >> cost; f2.cost = cost;
+	cin >> cost; f2.setCost(cost);
 	clearSpaceBehindFunc();
+	this->addNewFood(f2);
 	return f2;
 }
-void ListFood::editNode() {
-	int ok = 1;
-	do {
-		clearSpaceBehindFunc();
-		clearMenu();
-		gotoXY(4, 2); cout << " 1. Sua loai vat pham";
-		gotoXY(4, 3); cout << " 2. Sua ten vat pham";
-		gotoXY(4, 4); cout << " 3. Sua don vi ";
-		gotoXY(4, 5); cout << " 4. Sua so luong";
-		gotoXY(4, 6); cout << " 5. Sua gia tien";
-		gotoXY(4, 8); cout << " 0. Thoat"; int choose;
-		gotoXY(4, 10); cout << "Chon chuc nang" << char(175) << " "; cin >> choose;
-		switch (choose) {
-		case 1: {
-			cin.ignore();
-			string id;
+
+
+
+void ListFood::editData(string id, ListFood  L, int func) {
+	
+	
+
+	for (int i = 4; i < 50; i++) {
+		SetColor(64);
+		gotoXY(i, 11);
+		cout << char(219);
+	}
+	SetColor(127);
+	food* tmp = L.head;
+	bool checkHave = false;
+	while(tmp != NULL) {
+		if (tmp->getID() == id) {
+			checkHave = true;
+		}
+		tmp = tmp->next;
+	}
+	delete tmp;
+	if (checkHave) {
+		string cate, confirm; int qty, cost;
+			clearSpaceBehindFunc();
+			gotoXY(4, 10); 
+			switch (func) {
+			case 1: {
+				cout << "Nhap loai moi :" << char(175) << " ";
+				getline(cin, cate);
+				break; }
+
+			case 2: {
+				cout << "Nhap ten moi :" << char(175) << " ";
+				getline(cin, cate);
+				break;
+			}
+			case 3: {
+				cout << "Nhap don vi moi :" << char(175) << " ";
+				getline(cin, cate);
+				break;
+			}
+			case 4: {
+				cout << "Nhap so luong moi :" << char(175) << " ";
+				cin >> qty;
+				break; }
+			case 5: {
+					cout << "Nhap don gia moi :" << char(175) << " ";
+					cin >> cost;
+					break; }
+			}
 			
-			gotoXY(4, 10); cout << "Nhap id can sua " << char(175) << " ";
-			getline(cin, id);
-			break;
-		}
-		case 2: {
-			break;
-		}
-		case 3: {
-			break;
-		}
-		case 4: {
-			break;
-		}
-		case 5: {
-			break;
-		}
-		case 0: {
-			ok = 0;
-			break;
-		}
-		}
-	} while (ok);
+			clearSpaceBehindFunc();
+			gotoXY(4, 10); cout << "Ban chac chan chua(y/n) :" << char(175) << " ";
+			cin >> confirm;
+			if (confirm == "y") {
+				food* tmp1 = L.head;
+				while (tmp1 != NULL) {
+					if (tmp1->getID() == id) {
+						switch (func) {
+						case 1: tmp1->setCategory(cate);
+							break;
+						case 2: tmp1->setName(cate);
+							break;
+						case 3 :tmp1->setType(cate);
+							break;
+						case 4 : tmp1->setQty(qty);
+							break;
+						case 5: tmp1->setCost(cost);
+							break;
+						}
+						}
+					tmp1 = tmp1->next;
+
+					}
+
+					tmp1 = L.head;
+					L.head = tmp1;
+
+					fstream writedata;
+					writedata.open("foodData.txt", ios::out);
+					int i = 0;
+					while (tmp1 != NULL) {
+						i++;
+						writedata << tmp1->ToString();
+						//cout << tmp->ToString()<<endl;
+						tmp1 = tmp1->next;
+						//if (writedata.eof() != true) writedata << endl;
+						if (i != L.count) writedata << endl;
+					}
+					writedata.close();
+				}
+				
+
+	}
+	else {
+		clearSpaceBehindFunc();
+		SetColor(68);
+		gotoXY(4, 11); cout << "Vat pham ban can sua khong co trong danh sach" << " ";
+	}
+}
+
+void ListFood::find(string str) {
 	
-
-	
-
-
-
-
-
+	food* tmp = this->head;
+	while (tmp != NULL)
+	{
+		if (tmp->getID() == str || tmp->getName() == str) {
+			gotoXY(4, 15); cout << "ID   :" << tmp->getID();
+			gotoXY(4, 16); cout << "Loai :" << tmp->getCategory();
+			gotoXY(4, 17); cout << "Ten  :" << tmp->getName();
+			gotoXY(26, 15); cout << "Don vi   :" << tmp->getType();
+			gotoXY(26, 16); cout << "So luong :" << tmp->getQty();
+			gotoXY(26, 17); cout << "Don gia  :" << tmp->getCost();
+			break;
+		} // nếu tìm thấy index thì thoát khỏi vòng lặp
+			 // chưa tìm thấy thì tiếp tục duyệt phần tử kết tiếp
+		tmp = tmp->next;
+	}
 }

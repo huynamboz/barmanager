@@ -21,7 +21,7 @@
     <ClCompile Include="dontedit.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="CTDL.cpp">
+    <ClCompile Include="CTDL_food.cpp">
       <Filter>Header Files</Filter>
     </ClCompile>
     <ClCompile Include="run.cpp">

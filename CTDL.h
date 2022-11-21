@@ -70,5 +70,6 @@ public:
 	food& setData();
 	void showPage(int);
 	void deleteNode(string);
-	void editNode();
+	void editData(string, ListFood , int);
+	void find(string );
 };

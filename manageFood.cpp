@@ -128,9 +128,8 @@ void addNewItem() {
 	
 	cin.ignore();
 	clearSpaceBehindFunc();
-	
-
-	L1.addNewFood(L1.setData()); countFood++;
+	L1.setData();
+	countFood++;
 	writeFoodData();
 	readFoodData();
 	clearLoadData();
@@ -177,8 +176,97 @@ void deleteFood() {
 
 void editData() {
 	clearSpaceBehindFunc();
-
+	int ok = 1;
+	do {
+		clearSpaceBehindFunc();
+		clearMenu();
+		gotoXY(4, 2); cout << " 1. Sua loai vat pham";
+		gotoXY(4, 3); cout << " 2. Sua ten vat pham";
+		gotoXY(4, 4); cout << " 3. Sua don vi ";
+		gotoXY(4, 5); cout << " 4. Sua so luong";
+		gotoXY(4, 6); cout << " 5. Sua gia tien";
+		gotoXY(4, 8); cout << " 0. Thoat"; int choose;
+		gotoXY(4, 10); cout << "Chon chuc nang" << char(175) << " "; cin >> choose;
+		switch (choose) {
+		case 1: {
+			cin.ignore();
+			string id;
+			gotoXY(4, 10); cout << "Nhap id can sua " << char(175) << " ";
+			getline(cin, id);
+			L1.editData(id, L1, 1);
+			readFoodData();
+			L1.showPage(pageNow);
+			break;
+		}
+		case 2: {
+			cin.ignore();
+			string id;
+			gotoXY(4, 10); cout << "Nhap id can sua " << char(175) << " ";
+			getline(cin, id);
+			L1.editData(id, L1, 2);
+			readFoodData();
+			L1.showPage(pageNow);
+			break;
+		}
+		case 3: {
+			cin.ignore();
+			string id;
+			gotoXY(4, 10); cout << "Nhap id can sua " << char(175) << " ";
+			getline(cin, id);
+			L1.editData(id, L1, 3);
+			readFoodData();
+			L1.showPage(pageNow);
+			break;
+		}
+		case 4: {
+			cin.ignore();
+			string id;
+			gotoXY(4, 10); cout << "Nhap id can sua " << char(175) << " ";
+			getline(cin, id);
+			L1.editData(id, L1, 4);
+			readFoodData();
+			L1.showPage(pageNow);
+			break;
+		}
+		case 5: {
+			cin.ignore();
+			string id;
+			gotoXY(4, 10); cout << "Nhap id can sua " << char(175) << " ";
+			getline(cin, id);
+			L1.editData(id, L1, 5);
+			readFoodData();
+			L1.showPage(pageNow);
+			break;
+		}
+		case 0: {
+			ok = 0;
+			break;
+		}
+		}
+	} while (ok);
 }
+
+void findFood() {
+	clearSpaceBehindFunc();
+	cin.ignore();
+	string str;
+	gotoXY(4, 10); cout << "Nhap id hoac ten vat pham can tim ";
+	gotoXY(4, 11); cout << char(175) << " "; getline(cin, str);
+	for (int i = 4; i < 50; i++) {
+		SetColor(64);
+		gotoXY(i, 11);
+		cout << char(219);
+		gotoXY(i, 15);
+		cout << char(219);
+		gotoXY(i, 16);
+		cout << char(219);
+		gotoXY(i, 17);
+		cout << char(219);
+	}
+	SetColor(127);
+	L1.find(str);
+}
+
 void startFunction() {
 	int ok = 1;
 	int choose;
@@ -198,7 +286,8 @@ void startFunction() {
 				break;
 			}
 			case 2: {
-				L1.editNode();
+				editData();
+				readFoodData();
 				break;
 			}
 			case 3: {
@@ -206,6 +295,7 @@ void startFunction() {
 				break;
 			}
 			case 4: {
+				findFood();
 				break;
 			}
 			case 5: {
@@ -228,6 +318,7 @@ void manageFood() {
 	//loadData();
 	drawFrame();
 	startFunction();
+	system("cls");
 	//for(int i = 0; i < countFood ;i++)
 	//gotoXY(0, 0); cout << L1;
 
@@ -244,6 +335,5 @@ void manageFood() {
 	cin >> f1;
 	L1.addNewFood(f1);
 	cout << L1;*/
-	int a;
-	cin >> a;
+	
 }
