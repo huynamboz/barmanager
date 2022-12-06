@@ -5,6 +5,8 @@
 #include <conio.h>
 #include <fstream> 
 #include <iomanip>
+#include <time.h>
+
 
 #include "console.h"
 #include "dontedit.h"

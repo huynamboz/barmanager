@@ -4,23 +4,6 @@
 using namespace std;
 
 
-void user::setUsername(string u) {
-	this->username = u;
-}
-void user::setPassword(string u) {
-	this->password = u;
-}
-string user::Tostring() {
-	return ID + "," + username + "," + password + "," + email + "," + gender
-		+ "," + pNum + "," + bdate + "," + address + "," + permiss + "," + position;
-}
-string user::getUsername() {
-	return this->username;
-}
-string user::getPassword() {
-	return this->password;
-}
-
 
 
 
@@ -358,4 +341,29 @@ void ListFood::find(string str) {
 			 // chưa tìm thấy thì tiếp tục duyệt phần tử kết tiếp
 		tmp = tmp->next;
 	}
+}
+void ListFood::setNewQtyFromOrder(string str,int data) {
+	food* tmp = this->head;
+	while (tmp != NULL)
+	{
+		if (tmp->getID() == str || tmp->getName() == str) {
+			tmp->setQty(data);
+		}
+		tmp = tmp->next;
+	}
+	tmp = head;
+	head = tmp;
+
+	fstream writedata;
+	writedata.open("foodData.txt", ios::out);
+	int i = 0;
+	while (tmp != NULL) {
+		i++;
+		writedata << tmp->ToString();
+		//cout << tmp->ToString()<<endl;
+		tmp = tmp->next;
+		//if (writedata.eof() != true) writedata << endl;
+		if (i != this->count) writedata << endl;
+	}
+	writedata.close();
 }

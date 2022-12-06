@@ -1,8 +1,21 @@
 ﻿#include "dontedit.h"
 #include "Header.h"
 #include "run.h"
+#pragma warning(disable : 4996)
 
-int indexUserLoged;
+time_t theTime = time(NULL);
+struct tm* aTime = localtime(&theTime);
+
+int day = aTime->tm_mday;
+int month = aTime->tm_mon + 1; // Month is 0 – 11, add 1 to get a jan-dec 1-12 concept
+int year = aTime->tm_year + 1900; // Year is # years since 1900
+int hour = aTime->tm_hour;
+int min = aTime->tm_min;
+
+
+
+
+int indexUserLoged = 0;
 int countUser = 0;
 void window() {
 	SetConsoleTitle(L"Hello");
@@ -16,23 +29,25 @@ void readUserData() {
 	//cin.ignore();
 	
 	infile.open("user.txt", ios_base::in);
-	infile.ignore();
-	infile.ignore(); 
+	//infile.ignore();
+	//infile.ignore(); 
 	while (infile.eof() != true) {
-		getline(infile, userItem[k].ID, ',');
-		string username, pass;
+		string username, pass, id, mail, name, gender, number, bdate, addr, per, pos;
+		getline(infile, id, ',');
 		getline(infile, username, ',');
 		getline(infile, pass, ',');
 		userItem[k].setUsername(username);
 		userItem[k].setPassword(pass);
-		getline(infile, userItem[k].email, ',');
-		getline(infile, userItem[k].name, ',');
-		getline(infile, userItem[k].gender, ',');
-		getline(infile, userItem[k].pNum, ',');
-		getline(infile, userItem[k].bdate, ',');
-		getline(infile, userItem[k].address, ',');
-		getline(infile, userItem[k].permiss, ',');
-		getline(infile, userItem[k].position);
+		//getline(infile, id, ',');
+		getline(infile, mail, ',');
+		getline(infile, name, ',');
+		getline(infile, gender, ',');
+		getline(infile, number, ',');
+		getline(infile, bdate, ',');
+		getline(infile, addr, ',');
+		getline(infile, per, ',');
+		getline(infile, pos);
+		userItem[k].setAnotherInfo(id, mail, name, gender, number, bdate, addr, per, pos);
 		/*gotoXY(0, k); cout << userItem[k].Tostring();
 		getchar();*/
 		k++;
@@ -123,12 +138,12 @@ void startMenu() {
 		gotoXY(90, 15); cout << char(217);
 		gotoXY(50, 15); cout << char(192);
 		//---kết thúc vẽ khung--//
-		gotoXY(64, 1); cout << char(175) << " CHUC NANG " << char(174);
+		
+		gotoXY(55, 1); cout << char(175) << " Xin chao " << "[" << userItem[indexUserLoged].getInfo("name") << "]" << char(174);
 		gotoXY(52, 2); cout << " 1" << char(175) << " Quan ly vat pham ";
 		gotoXY(52, 3); cout << " 2" << char(175) << " Dat ban - dat ban truoc ";
 		gotoXY(52, 4); cout << " 3" << char(175) << " Goi mon ";
-
-		if (userItem[indexUserLoged].permiss == "manager") {
+		if (userItem[indexUserLoged].getInfo("permiss") == "manager") {
 			gotoXY(52, 5); cout << " 5" << char(175) << " Quan ly nhan vien ";
 			gotoXY(52, 6); cout << " 6" << char(175) << " Thong ke ";
 		}
@@ -138,11 +153,11 @@ void startMenu() {
 		cin >> choose;
 		switch(choose) {
 		case 1: {
-			 manageFood();
+			 managerFood();
 			break;
 		}
 		case 2: {
-			 //bookTable();
+			booktablePre_menu();
 			break;
 		}
 		case 3: {
@@ -150,11 +165,12 @@ void startMenu() {
 			break;
 		}
 		case 4: {
-			// manageStaff();
+			
 			break;
 		}
 		case 5: {
-			// analyst();
+			manageUser();
+			// manageStaff();
 			break;
 		}
 		case 0:{
@@ -170,9 +186,10 @@ int run() {
 	window();
 	
 	
-	//loginMenu();//kiểm tra thử đăng nhập có ok hay k
+	loginMenu();//kiểm tra thử đăng nhập có ok hay k
+
 	startMenu();
-	cout << "pass";
+	//cout << "pass";
 
 	return 0;
 }

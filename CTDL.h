@@ -1,29 +1,36 @@
-#pragma once
+﻿#pragma once
 #include "dontedit.h"
 
-class user {
-	string username;
-	string password;
-public:
-
+class person {
+protected:
 	string ID;
 	string email;
-	string name;
-	string gender;
-	string pNum;
-	string bdate;
-	string address;
-	string permiss;
-	string position;
+	string name;//ten
+	string gender;// gioi tinh
+	string pNum; //so dien thoai
+	string bdate; // ngay sinh nhat
+	string address;//dia chi
+};
 
+class user : public person{
+	string username;
+	string password;
+	string permiss;//quyen truy cap
+	string position;//vi tri nhan vien
+public:
 	string Tostring();
 	void setUsername(string);
 	void setPassword(string);
-
+	void setAccount(string, string);
 	string getUsername();
 	string getPassword();
-	
+	void setAnotherInfo(string, string, string, string, string,
+		string, string, string, string);
+	string getInfo(string); // lay ra dữ liệu muốn lấy
 };
+
+
+
 
 class food {
 private:
@@ -35,21 +42,18 @@ private:
 	int cost;
 public:
 	food* next;
-	
 	string getID() { return this->ID; };
 	string getCategory() { return this->category; };
 	string getName() { return this->name; };
 	string getType() { return this->type; };
 	int getQty() { return this->qty; };
 	int getCost() { return this->cost; };
-
 	void setID(string);
 	void setCategory(string) ;
 	void setName(string) ;
 	void setType(string);
 	void setQty(int);
 	void setCost(int);
-
 	string ToString();
 	food() {};
 	food(string, string, string, string, int, int);
@@ -72,4 +76,24 @@ public:
 	void deleteNode(string);
 	void editData(string, ListFood , int);
 	void find(string );
+	void setNewQtyFromOrder(string ,int);
+};
+
+
+//---------quan ly nhan vien----------//
+class bookTablePre {
+private:
+	string id;
+	string namePerson;
+	string sdt;
+	string timeBook;
+	string day;
+	string table;
+	int phuthu;
+	string note;
+public:
+	string toString();
+	void setAllInfo(string,string, string ,string, string, string, int, string);
+	string getInfo(string);
+	void editData(string,string);
 };

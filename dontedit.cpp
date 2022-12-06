@@ -4,7 +4,6 @@
 
 
 
-
 BOOL WINAPI SetConsoleTitle(_In_ LPCTSTR lpConsoleTitle);
 void GoTo(SHORT posX, SHORT posY)
 {

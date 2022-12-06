@@ -30,6 +30,21 @@
     <ClCompile Include="manageFood.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="manageUser.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="CTDL_user.cpp">
+      <Filter>Header Files</Filter>
+    </ClCompile>
+    <ClCompile Include="order.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="CTDL_BookPrevious.cpp">
+      <Filter>Header Files</Filter>
+    </ClCompile>
+    <ClCompile Include="bookTablePre.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="dontedit.h">
@@ -50,6 +65,12 @@
       <Filter>Resource Files</Filter>
     </Text>
     <Text Include="user.txt">
+      <Filter>Resource Files</Filter>
+    </Text>
+    <Text Include="ordering.txt">
+      <Filter>Resource Files</Filter>
+    </Text>
+    <Text Include="dataBookpre.txt">
       <Filter>Resource Files</Filter>
     </Text>
   </ItemGroup>

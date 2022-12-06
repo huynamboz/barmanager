@@ -1,7 +1,8 @@
-FK1,nuoc co con,strong bow,chai,36,36
-FK2,khan lau,khan uot loai vip,cai,300,300
-FK3,nuoc co con,chivas,chai,55,55
-FK4,khan lau,khan uot thuong,cai,200,200
-FK5,bear,larue,chai,1000,1000
-FK6,bong,bong cuoi,cai,100000,100000
-FK7,nuoc khong con,coca,lon,100,100
+FK1,nuoc co con,strong bow,chai,36,29000
+FK2,khan lau,khan uot loai vip,cai,300,9000
+FK3,nuoc co con,Chivas,chai,55,200000
+FK4,khan lau,khan uot thuong,cai,200,5000
+FK5,nuoc giai khat,sting dau,chai,35,11000
+FK7,nuoc giai khat,sting vang,chai,9999,1000
+FK9,nuoc co con,Chivas,chai,55,2000000
+FK8,nuoc khong con,nuoc loc,chai,1000,9000

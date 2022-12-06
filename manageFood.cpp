@@ -3,8 +3,8 @@
 using namespace std;
 ListFood L1;
 int countFood = 0;
-int allPage;
-int pageNow = 1;
+int allPageFood;
+int pageFoodNow = 1;
 
 
 
@@ -12,13 +12,15 @@ void readFoodData() {
 	ListFood L2;
 	int k = 0;
 	ifstream infile;
+
 	infile.open("foodData.txt", ios_base::in);
+
 	/*infile.ignore();
 	infile.ignore();*/
 
-	string id = "", cate, name, type; int qty, cost;
 	while (infile.eof() != true) {
 		food f1;
+		string id = "", cate, name, type; int qty, cost;
 
 		
 		getline(infile, id, ',');
@@ -45,8 +47,8 @@ void readFoodData() {
 		countFood = k;
 		L2.count = countFood;
 	};
-	if (countFood % 7 == 0) allPage = countFood / 7;
-	else allPage = countFood / 7 + 1;
+	if (countFood % 7 == 0) allPageFood = countFood / 7;
+	else allPageFood = countFood / 7 + 1;
 	L1 = L2;
 	infile.close();
 
@@ -133,21 +135,20 @@ void addNewItem() {
 	writeFoodData();
 	readFoodData();
 	clearLoadData();
-	gotoXY(0, 0); L1.showPage(allPage);
+	gotoXY(0, 0); L1.showPage(allPageFood);
 	//loadData();
 }
 
 void viewPageData() {
 	clearSpaceBehindFunc();
 	gotoXY(4, 10); cout << "Nhap trang muon xem :";
-	cin >> pageNow;
-	if (pageNow <= allPage) {
+	cin >> pageFoodNow;
+	if (pageFoodNow <= allPageFood) {
 		clearLoadData();
-		L1.showPage(pageNow);
+		L1.showPage(pageFoodNow);
 	}
 	
 }
-
 void clearMenu() {
 	for (int i = 2; i < 9; i++) {
 		SetColor(64);
@@ -195,7 +196,7 @@ void editData() {
 			getline(cin, id);
 			L1.editData(id, L1, 1);
 			readFoodData();
-			L1.showPage(pageNow);
+			L1.showPage(pageFoodNow);
 			break;
 		}
 		case 2: {
@@ -205,7 +206,7 @@ void editData() {
 			getline(cin, id);
 			L1.editData(id, L1, 2);
 			readFoodData();
-			L1.showPage(pageNow);
+			L1.showPage(pageFoodNow);
 			break;
 		}
 		case 3: {
@@ -215,7 +216,7 @@ void editData() {
 			getline(cin, id);
 			L1.editData(id, L1, 3);
 			readFoodData();
-			L1.showPage(pageNow);
+			L1.showPage(pageFoodNow);
 			break;
 		}
 		case 4: {
@@ -225,7 +226,7 @@ void editData() {
 			getline(cin, id);
 			L1.editData(id, L1, 4);
 			readFoodData();
-			L1.showPage(pageNow);
+			L1.showPage(pageFoodNow);
 			break;
 		}
 		case 5: {
@@ -235,7 +236,7 @@ void editData() {
 			getline(cin, id);
 			L1.editData(id, L1, 5);
 			readFoodData();
-			L1.showPage(pageNow);
+			L1.showPage(pageFoodNow);
 			break;
 		}
 		case 0: {
@@ -310,11 +311,11 @@ void startFunction() {
 	} while (ok);
 	
 }
-void manageFood() {
+void managerFood() {
 	system("cls");
-	
 	readFoodData();
-	L1.showPage(pageNow);
+
+	L1.showPage(pageFoodNow);
 	//loadData();
 	drawFrame();
 	startFunction();
