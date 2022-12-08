@@ -46,6 +46,16 @@ ostream& operator <<(ostream& out, const food& f) {
 			<< setw(10) << left << f.cost;
 	return out;
 }
+
+void food::setAllInfo(string id, string cate, string name, string type, int qty, int cost) {
+	this->ID = id;
+	this->category = cate;
+	this->name = name;
+	this->type = type;
+	this->qty = qty;
+	this->cost = cost;
+}
+
 food::food(food &f) {
 	this->ID = f.ID;
 	this->category = f.category;

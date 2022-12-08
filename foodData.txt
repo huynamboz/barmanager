@@ -1,4 +1,4 @@
-FK1,nuoc co con,strong bow,chai,36,29000
+FK1,nuoc co con,strong bow,chai,14,29000
 FK2,khan lau,khan uot loai vip,cai,300,9000
 FK3,nuoc co con,Chivas,chai,55,200000
 FK4,khan lau,khan uot thuong,cai,200,5000

@@ -141,7 +141,7 @@ void startMenu() {
 		
 		gotoXY(55, 1); cout << char(175) << " Xin chao " << "[" << userItem[indexUserLoged].getInfo("name") << "]" << char(174);
 		gotoXY(52, 2); cout << " 1" << char(175) << " Quan ly vat pham ";
-		gotoXY(52, 3); cout << " 2" << char(175) << " Dat ban - dat ban truoc ";
+		gotoXY(52, 3); cout << " 2" << char(175) << " Dat ban truoc ";
 		gotoXY(52, 4); cout << " 3" << char(175) << " Goi mon ";
 		if (userItem[indexUserLoged].getInfo("permiss") == "manager") {
 			gotoXY(52, 5); cout << " 5" << char(175) << " Quan ly nhan vien ";
@@ -161,7 +161,7 @@ void startMenu() {
 			break;
 		}
 		case 3: {
-			// order();
+			order_main();
 			break;
 		}
 		case 4: {
@@ -186,7 +186,7 @@ int run() {
 	window();
 	
 	
-	loginMenu();//kiểm tra thử đăng nhập có ok hay k
+	//loginMenu();//kiểm tra thử đăng nhập có ok hay k
 
 	startMenu();
 	//cout << "pass";

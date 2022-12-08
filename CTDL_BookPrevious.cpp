@@ -38,7 +38,27 @@ void bookTablePre::editData(string get, string value) {
 	else if (get == "thoigian")  this->timeBook = value;
 	else if (get == "ngay")  this->day = value;
 	else if (get == "ban")  this->table = value;
-	else if (get == "phuthu")  to_string(this->phuthu) = value;
+	else if (get == "phuthu")  this->phuthu = stoi(value);
 	else if (get == "ghichu")  this->note = value;
 
+}
+
+string barCalender::getInfo(string get) {
+	if (get == "ngay") return this->date;
+	else if (get == "detail") return this->detail;
+	else if (get == "phuthu") return to_string(this->phuthu);
+	else return "null";
+}
+void barCalender::setAnotherInfo(string d, string n, int pt) {
+	this->date = d;
+	this->detail = n;
+	this->phuthu = pt;
+}
+
+
+string doanhthu::getInfo(string get) {
+	if (get == "id")  return this->ID;
+	else if (get == "ten") return this->name;
+	else if (get == "ten") return to_string(this->soluong);
+	else if (get == "ten") return to_string(this->tong);
 }

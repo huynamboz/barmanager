@@ -81,8 +81,8 @@ void clearFormDataOfBookPre() {
 }
 void clearInputDataOfBookPre() {
 	SetColor(0);
-	for (int x = 1; x < 35; x++) {
-		for (int y = 9; y < 20; y++) {
+	for (int x = 0; x < 35; x++) {
+		for (int y = 9; y < 40; y++) {
 			gotoXY(x, y); cout << char(219);
 		}
 	}
@@ -91,12 +91,50 @@ void clearInputDataOfBookPre() {
 
 void clear_menuBookPre_form() {
 	SetColor(0);
-	for (int x = 1; x < 50; x++) {
-		for (int y = 1; y < 20; y++) {
+	for (int x = 0; x < 40; x++) {
+		for (int y = 1; y < 10; y++) {
 			gotoXY(x, y); cout << char(219);
 		}
 	}
 	SetColor(127);
+}
+
+int checkPhuThu(int d, int m, int y) {
+	barCalender ListCal[100];
+	int k = 0;
+	int countList = k;
+	ifstream infile;
+	infile.open("calendar.txt", ios_base::in);
+	while (infile.eof() != true) {
+		string day, detail;int  phuthu =0;
+		getline(infile, day, ',');
+		getline(infile, detail, ',');
+		infile >> phuthu;
+		infile.ignore();
+		ListCal[k].setAnotherInfo(day, detail, phuthu);
+		/*gotoXY(0, k); cout << listUser[k].Tostring();
+		getchar();*/
+		k++;
+		countList = k;
+	};
+	infile.close();
+	string date = to_string(d)+"/" + to_string(m)+"/" + to_string(y);
+	for (int i = 0; i < countList; i++) {
+		if (ListCal[i].getInfo("ngay") == date) {
+			return stoi(ListCal[i].getInfo("phuthu"));
+		}
+	}
+	return 0;
+}
+
+int up(string u) {
+	int sum = 0;
+	int k = 0;
+	for (int i = u.length() - 1; i >= 0; i--) {
+		sum += (u[i] - '0') * 10 * k;
+		k++;
+	}
+	return sum;
 }
 void inputInformation_bookPre() {
 	string id,name, sdt, ngay, ban,ghichu;
@@ -123,14 +161,48 @@ void inputInformation_bookPre() {
 			TX += 7;
 		}
 	}*/
-	TY =15;
-	gotoXY(1, TY); cout << "Nhap ten > "; getline(cin, name);
-	gotoXY(1, TY+1); cout << "Nhap so dien thoai > "; getline(cin, sdt);
-	gotoXY(1, TY+2); cout << "Nhap ngay > "; getline(cin, ngay);
-	gotoXY(1, TY+3); cout << "Nhap ban > "; getline(cin, ban);
+	TY =10;
+	SetColor(0);
+	for (int x = 0; x < 30; x++) {
+		gotoXY(x, 10); cout << char(219);
+	} SetColor(127);
+	gotoXY(1, TY); cout << " Nhap ten > "; getline(cin, name);
+	gotoXY(1, TY+1); cout << " Nhap so dien thoai > "; getline(cin, sdt);
+
+	int d, m, y;
+
+here:
+	SetColor(0);
+	for (int x = 0; x < 30; x++) {
+		gotoXY(x, TY+2); cout << char(219);
+	} SetColor(127); 
+	gotoXY(1, TY + 2); cout << " Nhap ngay muon dat >"; cin >> d >> m >> y;
+	cin.ignore();
+	bool checkDay = true;
+	if (y == aTime2->tm_year + 1900) {
+		if (m >= aTime2->tm_mon) {
+			if (d >= aTime2->tm_mday) {
+				ngay = to_string(d) + "/" + to_string(m) + "/" + to_string(y);
+			}
+			else checkDay = false;
+		}
+		else checkDay = false;
+	}
+	else checkDay = false;
+	
+	if (checkDay == false) {
+		cout << " Nhap sai ngay !";
+		goto here;
+	}
+	else cout << "                           ";
+	int pt = checkPhuThu(d, m, y);
+	if (pt > 0) {
+		gotoXY(1, TY + 3); cout << "Phi phu thu " << pt;
+	}
+	gotoXY(1, TY + 4); cout << " Nhap ban > "; getline(cin, ban);
 	ban = "ban " + ban;
-	gotoXY(1, TY+4); cout << "Nhap ghichu > "; getline(cin, ghichu);
-	int pt = 100;
+	gotoXY(1, TY+5); cout << " Nhap ghichu > "; getline(cin, ghichu);
+	
 	id = to_string(stoi(Listtable[slTableBooked-1].getInfo("id"))+1);
 	bool checkTableOK = true;
 	for (int i = 0; i < slTableBooked; i++) {
@@ -147,15 +219,282 @@ void inputInformation_bookPre() {
 		clearFormDataOfBookPre();
 		clearInputDataOfBookPre();
 		showData_bookpre();
+		gotoXY(0, 10); cout << " Dat ban thanh cong";
+
 	} 
 	else
 	{
-		cout << "Ban da duoc dat";
+		
 		clearFormDataOfBookPre();
-		clearInputDataOfBookPre();
+		clearInputDataOfBookPre();gotoXY(0, 10); cout << " Ban da co nguoi dat truoc";
 		showData_bookpre();
 	}
 	
+}
+void clearEditOfBookPre() {
+	SetColor(0);
+	for (int x = 0; x < 43; x++) {
+		gotoXY(x, 10); cout << char(219);
+	} SetColor(127);
+
+}
+
+void editValueOfBookPre(string id, string whatEdit) {
+	bool checkId = false; 
+	for (int i = 0; i < slTableBooked; i++) {
+		if (Listtable[i].getInfo("id") == id) {
+			checkId = true;
+		}
+	}
+	if (checkId) {
+		if (whatEdit == "ten") {
+			string name;
+
+
+			clearEditOfBookPre();
+
+
+			gotoXY(0, 10); cout << " Nhap ten moi >"; getline(cin, name);
+
+			string cfrm = "";
+
+			clearEditOfBookPre();
+
+
+			gotoXY(0, 10); cout << " Ban co chac chan chua (y/n) >"; cin >> cfrm;
+			if (cfrm == "y") {
+
+				for (int i = 0; i < slTableBooked; i++) {
+					if (Listtable[i].getInfo("id") == id) {
+						Listtable[i].editData(whatEdit, name);
+						break;
+					}
+				}
+				writeBookPreData();
+				readDatatableOrdered();
+				clearFormDataOfBookPre();
+				showData_bookpre();
+				SetColor(0);
+				for (int x = 0; x < 30; x++) {
+					gotoXY(x, 10); cout << char(219);
+				} SetColor(127);
+				gotoXY(0, 10); cout << " Da thay doi thanh cong !";
+			}
+		}
+		/*edit sdt ------------------------------*/
+		else if (whatEdit == "sdt") {
+			string sdt;
+
+
+			clearEditOfBookPre();
+
+
+			gotoXY(0, 10); cout << " Nhap so dien thoai moi >"; getline(cin, sdt);
+
+			string cfrm = "";
+
+			clearEditOfBookPre();
+
+
+			gotoXY(0, 10); cout << " Ban co chac chan chua (y/n) >"; cin >> cfrm;
+			if (cfrm == "y") {
+				for (int i = 0; i < slTableBooked; i++) {
+					if (Listtable[i].getInfo("id") == id) {
+						Listtable[i].editData(whatEdit, sdt);
+						break;
+					}
+				}
+				writeBookPreData();
+				readDatatableOrdered();
+				clearFormDataOfBookPre();
+				showData_bookpre();
+				clearEditOfBookPre();
+				gotoXY(0, 10); cout << " Da thay doi thanh cong !";
+			}
+		}
+		/*edit ngay ------------------------------*/
+		else if (whatEdit == "ngay") {
+			string ngay;
+			int d, m, y;
+		here1:
+			clearEditOfBookPre();
+			gotoXY(0, 10); cout << " Nhap lai ngay vd:21 12 2022 >"; 
+			cin >> d >> m >> y;
+			cin.ignore();
+			bool checkDay = true;
+			if (y == aTime2->tm_year + 1900) {
+				if (m >= aTime2->tm_mon  && m <=12 && m >=0) {
+					if (d >= aTime2->tm_mday && d <=31) {
+						ngay = to_string(d) + "/" + to_string(m) + "/" + to_string(y);
+					}
+					else checkDay = false;
+				}
+				else checkDay = false;
+			}
+			else checkDay = false;
+			if (checkDay == false) {
+				cout << " Nhap sai ngay !";
+				goto here1;
+			}
+			int pt = checkPhuThu(d, m, y);
+			if (pt > 0) {
+				gotoXY(1, 9); cout << "Phi phu thu " << pt;
+			}
+			string cfrm = "";
+			clearEditOfBookPre();
+			gotoXY(0, 10); cout << " Ban co chac chan chua (y/n) >"; cin >> cfrm;
+			if (cfrm == "y") {
+				for (int i = 0; i < slTableBooked; i++) {
+					if (Listtable[i].getInfo("id") == id) {
+						Listtable[i].editData(whatEdit, ngay);
+						Listtable[i].editData("phuthu", to_string(pt));
+						break;
+					}
+				}
+				SetColor(0);
+				for (int x = 0; x < 40; x++) {
+					gotoXY(x, 11); cout << char(219);
+				} SetColor(127);
+				writeBookPreData();
+				readDatatableOrdered();
+				clearFormDataOfBookPre();
+				showData_bookpre();
+				clearEditOfBookPre();
+				gotoXY(0, 10); cout << " Da thay doi thanh cong !";
+			}
+		}
+		/*edit ban ------------------------------*/
+		else if (whatEdit == "ban") {
+		string ban;
+
+
+		clearEditOfBookPre();
+		here2:
+		int bNum = 0;
+
+		SetColor(0);
+		for (int x = 0; x < 30; x++) {
+			gotoXY(x, 10); cout << char(219);
+		} SetColor(127);
+
+		gotoXY(0, 10); cout << " Nhap ban moi >"; cin >> bNum;
+		if (0 > bNum || bNum > 20) {
+			cout << " Ban khong hop le           ";
+			goto here2;
+		}
+		SetColor(0);
+		for (int x = 0; x < 30; x++) {
+			gotoXY(x, 10); cout << char(219);
+		} SetColor(127);
+		bool checktable = true;
+		ban = "ban " + to_string(bNum); 
+		for (int i = 0; i < slTableBooked; i++) {
+			
+			if (Listtable[i].getInfo("ban") == ban) {
+				checktable = false;
+			}
+		}
+
+
+		if (checktable == false) {
+			gotoXY(1,11); cout << " Ban da co nguoi dat !        ";
+			goto here2;
+		}
+		string cfrm = "";
+
+		clearEditOfBookPre();
+
+
+		gotoXY(0, 10); cout << " Ban co chac chan chua (y/n) >"; cin >> cfrm;
+		if (cfrm == "y") {
+
+			for (int i = 0; i < slTableBooked; i++) {
+				if (Listtable[i].getInfo("id") == id) {
+					Listtable[i].editData(whatEdit, ban);
+					break;
+				}
+			}
+
+			writeBookPreData();
+			readDatatableOrdered();
+			clearFormDataOfBookPre();
+			showData_bookpre();
+
+			clearEditOfBookPre();
+
+			SetColor(0);
+			for (int x = 0; x < 30; x++) {
+				gotoXY(x, 10); cout << char(219);
+			} SetColor(127);
+			gotoXY(0, 10); cout << " Da thay doi thanh cong !";
+		}
+		}
+		//----------------------------------------------------//
+		else if (whatEdit == "ghichu") {
+		string ghichu;
+
+
+		clearEditOfBookPre();
+
+
+		gotoXY(0, 10); cout << " Nhap ghi chu moi >"; getline(cin, ghichu);
+
+		
+
+		clearEditOfBookPre();
+
+		string cfrm = "";
+		gotoXY(0, 10); cout << " Ban co chac chan chua (y/n) >"; cin >> cfrm;
+		if (cfrm == "y") {
+			for (int i = 0; i < slTableBooked; i++) {
+				if (Listtable[i].getInfo("id") == id) {
+					Listtable[i].editData(whatEdit, ghichu);
+					break;
+				}
+			}
+			writeBookPreData();
+			readDatatableOrdered();
+			clearFormDataOfBookPre();
+			showData_bookpre();
+			clearEditOfBookPre();
+			gotoXY(0, 10); cout << " Da thay doi thanh cong !";
+		}
+		}
+
+	}
+	else {
+
+		clearEditOfBookPre();
+
+		gotoXY(0, 10); cout << " Khong co du lieu";
+	}
+	
+
+}
+
+void deleteDataBookPre() {
+	//clear_menuBookPre_form();
+	clearEditOfBookPre();
+	gotoXY(0, 10); cout << " Nhap id can xoa >"; string id; cin >> id;
+	
+	string cfrm = "";
+	gotoXY(0, 10); cout << " Ban co chac chan chua (y/n) >"; cin >> cfrm;
+	if (cfrm == "y") {
+		for (int i = 0; i < slTableBooked; i++) {
+			if (Listtable[i].getInfo("id") == id) {
+				for (int j = i; j < slTableBooked - 1; j++) {
+					Listtable[j] = Listtable[j + 1];
+				}
+				slTableBooked--;
+				break;
+			}
+		}
+		writeBookPreData();
+		readDatatableOrdered();
+		clearFormDataOfBookPre();
+		showData_bookpre();
+		clearEditOfBookPre();
+	}
 }
 
 
@@ -163,6 +502,7 @@ void editDataBookPre() {
 	int ok = 1;
 	do {
 		clear_menuBookPre_form();
+	//	clearInputDataOfBookPre();
 		SetColor(127);
 		gotoXY(0, 0);
 		cout << endl << " -- SUA THONG TIN -- ";
@@ -174,24 +514,59 @@ void editDataBookPre() {
 		cout << endl << "0. Thoat";
 		int choose;
 		cout << endl << "- chon chuc nang > "; cin >> choose;
-		inputInformation_bookPre();
 		switch (choose)
 		{
 		case 1: {
-			cout << "";
-			string name;
-			cout << endl << "Nhap ten moi >"; getline(cin, name);
-			
+			//clearInputDataOfBookPre();
+			clearEditOfBookPre();
+			gotoXY(0, 10); cout << "Nhap id can sua >"; string id; cin >> id;
+			cin.ignore();
+			editValueOfBookPre(id, "ten");
 			break;
 
 		}
 			//inputInformation_bookPre();
 		case 2:
-			//editDataBookPre();
+		{
+			clearEditOfBookPre();
+
+			gotoXY(0, 10); cout << "Nhap id can sua >"; string id; cin >> id;
+			cin.ignore();
+			editValueOfBookPre(id, "sdt");
+
 			break;
-		case 0:
+		
+		}
+		case 3: {
+			clearEditOfBookPre();
+			gotoXY(0, 10); cout << "Nhap id can sua >"; string id; cin >> id;
+			cin.ignore();
+			editValueOfBookPre(id, "ngay");
+			break;
+		}
+		case 4: {
+			clearEditOfBookPre();
+			gotoXY(0, 10); cout << "Nhap id can sua >"; string id; cin >> id;
+			cin.ignore();
+			editValueOfBookPre(id, "ban");
+			break;
+		}
+		case 5: {
+			clearEditOfBookPre();
+			gotoXY(0, 10); cout << "Nhap id can sua >"; string id; cin >> id;
+			cin.ignore();
+			editValueOfBookPre(id, "ghichu");
+			break;
+		}
+		case 0: {
+			clear_menuBookPre_form();
+			SetColor(0);
+			for (int x = 0; x < 30; x++) {
+				gotoXY(x, 10); cout << char(219);
+			} SetColor(127);
 			ok = 0;
 			break;
+		}
 		default:
 			break;
 		}
@@ -206,8 +581,8 @@ void menu_bookPre() {
 		cout << endl << " -- CHUC NANG -- ";
 		cout << endl << "1. Dat ban";
 		cout << endl << "2. Chinh sua thong tin dat ban";
-		cout << endl << "3. Hien thi danh sach dat ban";
-		cout << endl << "4. Xoa thong tin dat ban";
+		//cout << endl << "3. Hien thi danh sach dat ban";
+		cout << endl << "3. Xoa thong tin dat ban";
 		cout << endl << "0. Thoat";
 		int choose; 
 		cout << endl << "- chon chuc nang > "; cin >> choose;
@@ -218,6 +593,9 @@ void menu_bookPre() {
 			break;
 		case 2:
 			editDataBookPre();
+			break;
+		case 3:
+			deleteDataBookPre();
 			break;
 		case 0 :
 			ok = 0;

@@ -54,6 +54,8 @@ public:
 	void setType(string);
 	void setQty(int);
 	void setCost(int);
+
+	void setAllInfo(string, string, string, string, int, int);
 	string ToString();
 	food() {};
 	food(string, string, string, string, int, int);
@@ -96,4 +98,26 @@ public:
 	void setAllInfo(string,string, string ,string, string, string, int, string);
 	string getInfo(string);
 	void editData(string,string);
+};
+
+
+class barCalender {
+private:
+	string date;
+	string detail;
+	int phuthu;
+public:
+	string getInfo(string);
+	void setAnotherInfo(string, string, int);
+};
+
+class doanhthu {
+private:
+	string ID;
+	string name;
+	int soluong;
+	int tong;
+	int total;
+public:
+	string getInfo(string);
 };
