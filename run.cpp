@@ -144,8 +144,8 @@ void startMenu() {
 		gotoXY(52, 3); cout << " 2" << char(175) << " Dat ban truoc ";
 		gotoXY(52, 4); cout << " 3" << char(175) << " Goi mon ";
 		if (userItem[indexUserLoged].getInfo("permiss") == "manager") {
-			gotoXY(52, 5); cout << " 5" << char(175) << " Quan ly nhan vien ";
-			gotoXY(52, 6); cout << " 6" << char(175) << " Thong ke ";
+			gotoXY(52, 5); cout << " 4" << char(175) << " Quan ly nhan vien ";
+			gotoXY(52, 6); cout << " 5" << char(175) << " Thong ke ";
 		}
 		gotoXY(52, 7); cout << " 0" << char(175) << " Dang xuat ";
 		gotoXY(52, 9); cout <<" Chon chuc nang " << char(175) << " ";
@@ -164,12 +164,14 @@ void startMenu() {
 			order_main();
 			break;
 		}
-		case 4: {
-			
+		case 5: {
+			analyst_action();
 			break;
 		}
-		case 5: {
-			manageUser();
+		case 4: {
+			if (userItem[indexUserLoged].getInfo("permiss") == "manager") {
+				manageUser();
+			}
 			// manageStaff();
 			break;
 		}
@@ -186,7 +188,7 @@ int run() {
 	window();
 	
 	
-	//loginMenu();//kiểm tra thử đăng nhập có ok hay k
+	loginMenu();//kiểm tra thử đăng nhập có ok hay k
 
 	startMenu();
 	//cout << "pass";

@@ -59,6 +59,23 @@ void barCalender::setAnotherInfo(string d, string n, int pt) {
 string doanhthu::getInfo(string get) {
 	if (get == "id")  return this->ID;
 	else if (get == "ten") return this->name;
-	else if (get == "ten") return to_string(this->soluong);
-	else if (get == "ten") return to_string(this->tong);
+	else if (get == "sl") return to_string(this->soluong);
+	else if (get == "tong") return to_string(this->tong);
+	else return "0";
+}
+
+string doanhthu::toString() {
+	return this->ID + "," + this->name + "," + to_string(this->soluong) + "," +
+		to_string(this->tong);
+}
+void doanhthu::setAllInfo(string id, string name, int qty, int tong) {
+	this->ID = id;
+	this->name = name;
+	this->soluong = qty;
+	this->tong = tong;
+}
+
+void doanhthu::setData(string set,int value) {
+	if (set == "sl") this->soluong = value;
+	else if (set == "tong") this->tong = value;
 }

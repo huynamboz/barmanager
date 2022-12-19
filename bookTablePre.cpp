@@ -196,9 +196,7 @@ here:
 	}
 	else cout << "                           ";
 	int pt = checkPhuThu(d, m, y);
-	if (pt > 0) {
-		gotoXY(1, TY + 3); cout << "Phi phu thu " << pt;
-	}
+		gotoXY(1, TY + 3); cout << " Phi phu thu : " << pt <<"d";
 	gotoXY(1, TY + 4); cout << " Nhap ban > "; getline(cin, ban);
 	ban = "ban " + ban;
 	gotoXY(1, TY+5); cout << " Nhap ghichu > "; getline(cin, ghichu);

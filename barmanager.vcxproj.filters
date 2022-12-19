@@ -45,6 +45,9 @@
     <ClCompile Include="bookTablePre.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="analyst.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="dontedit.h">

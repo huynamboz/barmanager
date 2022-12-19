@@ -52,17 +52,52 @@ void clear_input_order() {
 	}
 	SetColor(127);
 }
+
+doanhthu ListItemDoanhThu[100];
+int slItemInDoanhThu = 0;
+void read_file_doanhthu() {
+	int k = 0;
+	ifstream infile;
+	infile.open("doanhthu.txt", ios_base::in);
+	/*infile.ignore();
+	infile.ignore();*/
+
+	string id = "", name; int qty, cost;
+	while (infile.eof() != true) {
+		getline(infile, id, ',');
+		getline(infile, name, ',');
+		infile >> qty;
+		infile.ignore();
+		infile >> cost;
+		infile.ignore();
+		ListItemDoanhThu[k].setAllInfo(id, name, qty, cost);
+		k++;
+		slItemInDoanhThu = k;
+	};
+
+	infile.close();
+}
 void order_food() {
 	system("cls");
 	int x = 30, y = 0;
+	SetColor(78);
 	gotoXY(x , y); cout << "ID";
 	gotoXY(x + 10, y); cout << "TEN";
 	gotoXY(x + 10 + 20, y); cout << "LOAI";
 	gotoXY(x + 10 + 20 + 20, y); cout << "DON VI";
 	gotoXY(x + 10 + 20 + 20 + 10, y); cout << "SO LUONG";
 	gotoXY(x + 10 + 20 + 20 + 10 + 10, y); cout << "DON GIA";
-	
-	int YY = 1;
+	SetColor(63);
+
+	string listIDOrder[100] ;
+	int slOrder[100] ;
+	int tong[100];
+	int orderIndex = 0;
+
+
+
+
+	int YY = 2;
 	int XX = 30;
 	readFoodData_order();
 	for (int i = 0; i < slFood; i++) {
@@ -135,6 +170,13 @@ void order_food() {
 		gotoXY(XX, YY + 1); cout << "Nhap so luong > "; cin >> sl;
 		for (int i = 0; i < slFood; i++) {
 			if (ListFood[i].getID() == id) {
+				listIDOrder[orderIndex] = id;
+				slOrder[orderIndex] = sl;
+				tong[orderIndex] = ListFood[i].getCost() *sl;
+
+
+
+				orderIndex++;
 				gotoXY(XX + 20, YY2); cout << sl;
 				ListFood[i].setQty(ListFood[i].getQty()-sl);
 				gotoXY(XX + 20 + 15, YY2); cout<< ListFood[i].getCost() ;
@@ -150,6 +192,30 @@ void order_food() {
 
 	} while (ok);
 	YY2++;
+
+	read_file_doanhthu();
+	//gotoXY(45, 70); cout << ListItemDoanhThu[0].toString();
+	bool checkIndoanhthu = false;
+	for (int i = 0; i < slItemInDoanhThu; i++) {
+		for (int j = 0; j < orderIndex; j++) {
+			if (listIDOrder[j] == ListItemDoanhThu[i].getInfo("id")) {
+				ListItemDoanhThu[i].setData("sl", stoi(ListItemDoanhThu[i].getInfo("sl"))+slOrder[j]);
+				ListItemDoanhThu[i].setData("tong", stoi(ListItemDoanhThu[i].getInfo("tong"))+tong[j]);
+			}
+		}
+	}
+
+	fstream writedata;
+	writedata.open("doanhthu.txt", ios::out);
+	for (int i = 0; i < slItemInDoanhThu; i++) {
+		writedata << ListItemDoanhThu[i].toString();
+		if (i != slItemInDoanhThu - 1) writedata << endl;
+	}
+
+	writedata.close();
+
+	read_file_doanhthu();
+
 	gotoXY(XX, YY2++); cout << "---------------------";
 	gotoXY(XX, YY2++); cout << "Thanh tien          :" << sum;
 	string cfm = "";
@@ -169,34 +235,7 @@ void order_food() {
 
 }
 void order_menu() {
-	int ok = 1;
-	do {
-		SetColor(127);
-		gotoXY(50, 0);
-		cout <<  " -- CHUC NANG -- ";
-		gotoXY(50, 1); cout << "1. Goi mon";
-		//cout << endl << "3. Hien thi danh sach dat ban";
-		gotoXY(50, 4); cout << "0. Thoat";
-		int choose;
-		gotoXY(50, 5); cout <<  "- chon chuc nang > "; cin >> choose;
-		switch (choose)
-		{
-		case 1:
-			order_food();
-			break;
-		case 2:
-			//editDataBookPre();
-			break;
-		case 3:
-			//deleteDataBookPre();
-			break;
-		case 0:
-			ok = 0;
-			break;
-		default:
-			break;
-		}
-	} while (ok);
+	order_food();
 }
 
 void order_main() {

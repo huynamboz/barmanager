@@ -127,6 +127,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="analyst.cpp" />
     <ClCompile Include="barmanager.cpp" />
     <ClCompile Include="bookTablePre.cpp" />
     <ClCompile Include="CTDL_BookPrevious.cpp" />

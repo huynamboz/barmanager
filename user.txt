@@ -1,5 +1,8 @@
-KH1,admin,0,teahuynam2003@gmail.com,Trinh Huy Nam,Nam,0987888555,04/03/2003,Tam Ky,manager,Quan ly
-KH2,son,0,huynamtricker@gmail.com,Trung Son,Nam,0987999867,02/09/2003,Da nang,staff,nhan vien
-KH3,leanh00,leanh1999,leanh@gmail.com,Le Anh Hoang,Nu,0988667733,02/10/1999,Ha noi,staff,Pha che
-KH5,huanhoang,huan1,huan0568@gmail.com,Hoang huan,Nu,0357909999,02/10/1999,Tam ky,staff,Don toa let
-KH6,huongan,abcd,hi@@gmail.com,Le thi huong,nu,098899112,1/2/2003,tam ky,staff,ban hang
+KH1,admin,0,teahuynam2003@gmail.com,Trinh Huy Nam,Nam,0914076123,04/03/2003,Tam Ky,manager,Quan ly
+KH2,sonHH,0,huynamtricker@gmail.com,Trung Son,Nam,09863861385,02/09/2003,Da nang,staff,nhan vien
+KH3,leanh1,leanh1999,leanh@gmail.com,Le Anh Hoang,Nu,0918034631,02/10/1999,Ha noi,staff,Pha che
+KH5,huanhoang,huan1,huan0568@gmail.com,Hoang huan,Nu,0987185617,02/10/1999,Tam ky,staff,Don toa let
+KH6,huongan,abcd,hi@@gmail.com,Le thi huong,nu,0987186361,1/2/2003,tam ky,staff,ban hang
+KH7,leanh,1234,leanh@gmail.com,le thi anh,nu,0912123432,01/02/2002,tam thang,staff,le tan
+KH8,lehuong,le1234,huong@gmail.com,le anh huong,nu,098767813,12/12/2003,ha noi,staff,don dep
+KH9,hoaian,an1234,hoaian@gmail.com,Le Hoai An,nam,0984619309,12/12/2005,Sai Gon,staff,don dep

@@ -1,16 +1,3 @@
-﻿  CTDL_BookPrevious.cpp
-  CTDL_food.cpp
-  CTDL_user.cpp
-  bookTablePre.cpp
-D:\code\github\barmanager\bookTablePre.cpp(133,2): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
-  dontedit.cpp
-D:\code\github\barmanager\dontedit.cpp(7,57): warning C4273: 'SetConsoleTitleW': inconsistent dll linkage
-C:\Program Files (x86)\Windows Kits\10\Include\10.0.19041.0\um\consoleapi2.h(510,1): message : see previous definition of 'SetConsoleTitleW'
-  manageFood.cpp
-  manageUser.cpp
-  order.cpp
-  run.cpp
-  Generating Code...
-D:\code\github\barmanager\CTDL_food.cpp(233): warning C4172: returning address of local variable or temporary: f2
-D:\code\github\barmanager\CTDL_BookPrevious.cpp(64): warning C4715: 'doanhthu::getInfo': not all control paths return a value
+﻿  manageUser.cpp
+D:\code\github\barmanager\manageUser.cpp(532,12): warning C4102: 'reInputsdt': unreferenced label
   barmanager.vcxproj -> D:\code\github\barmanager\x64\Debug\barmanager.exe

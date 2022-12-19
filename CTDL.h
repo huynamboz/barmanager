@@ -26,6 +26,7 @@ public:
 	string getPassword();
 	void setAnotherInfo(string, string, string, string, string,
 		string, string, string, string);
+	void setInfo(string,string);
 	string getInfo(string); // lay ra dữ liệu muốn lấy
 };
 
@@ -57,6 +58,7 @@ public:
 
 	void setAllInfo(string, string, string, string, int, int);
 	string ToString();
+	string ToStringToAnalyst();
 	food() {};
 	food(string, string, string, string, int, int);
 	food(food &);
@@ -119,5 +121,9 @@ private:
 	int tong;
 	int total;
 public:
+	string toString();
 	string getInfo(string);
+	void setAllInfo(string, string, int, int);
+	void setData(string,int);
 };
+

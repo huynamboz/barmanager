@@ -41,7 +41,7 @@ void user::setAnotherInfo(string id, string mail, string name, string gender, st
 
 string user::getInfo(string whatGet) {
 	
-	if (whatGet == "ID") return this->ID;
+	if (whatGet == "id") return this->ID;
 	else if (whatGet == "email") return this->email;
 	else if (whatGet == "username") return this->username;
 	else if (whatGet == "password") return this->password;
@@ -53,4 +53,18 @@ string user::getInfo(string whatGet) {
 	else if (whatGet == "permiss") return this->permiss;
 	else if (whatGet == "position") return this->position;
 	else return "NULL";
+}
+void user::setInfo(string whatSet, string val) {
+
+	if (whatSet == "id")  this->ID = val;
+	else if (whatSet == "email")  this->email = val;
+	else if (whatSet == "username")  this->username = val;
+	else if (whatSet == "password")  this->password = val;
+	else if (whatSet == "name")  this->name = val;
+	else if (whatSet == "gender")  this->gender = val;
+	else if (whatSet == "pNum")  this->pNum = val;
+	else if (whatSet == "bdate")  this->bdate = val;
+	else if (whatSet == "address")  this->address = val;
+	else if (whatSet == "permiss")  this->permiss = val;
+	else if (whatSet == "position")  this->position = val;
 }

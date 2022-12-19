@@ -112,6 +112,11 @@ string food::ToString() {
 		std::to_string(qty) + "," + std::to_string(cost);
 }
 
+string food::ToStringToAnalyst() {
+	return ID  + "," + name + "," + 
+		std::to_string(0) + "," + std::to_string(0);
+}
+
 void ListFood::addNewFood( food& f) {
 	food* newFood = new food(f);
 	if (head == NULL) {

@@ -69,6 +69,21 @@ void writeFoodData() {
 	writedata.close();
 }
 
+
+void writeFoodDataToAnalyst() {
+	fstream writedata;
+	writedata.open("doanhthu.txt", ios::app);
+	food* tmp = L1.head; int i = 0;
+	while (tmp->next != NULL) {
+		
+		//cout << tmp->ToString()<<endl;
+		tmp = tmp->next;
+		//if (writedata.eof() != true) writedata << endl;
+	}
+	writedata << endl<< tmp->ToStringToAnalyst();
+	writedata.close();
+}
+
 void inData() {
 
 }
@@ -134,6 +149,7 @@ void addNewItem() {
 	countFood++;
 	writeFoodData();
 	readFoodData();
+	writeFoodDataToAnalyst();
 	clearLoadData();
 	gotoXY(0, 0); L1.showPage(allPageFood);
 	//loadData();
