@@ -1,0 +1,10 @@
+FK7,sting vang,1201,1201000
+FK1,strong bow,25,725000
+FK2,khan uot loai vip,21,189000
+FK4,khan uot thuong,52,60000
+FK5,sting dau,111,121000
+FK3,Chivas,10,2000000
+FK8,nuoc loc,11,0
+FK9,Chivas,100,10000
+FK10,larue,13,12000
+FK9,coctail,0,0

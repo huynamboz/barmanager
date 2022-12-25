@@ -265,9 +265,18 @@ void editData() {
 
 void findFood() {
 	clearSpaceBehindFunc();
+
+	SetColor(0);
+	for (int x = 0; x < 45; x++) {
+		for (int y = 12; y < 50; y++) {
+			gotoXY(x, y); cout << char(219);
+		}
+	}
+	SetColor(127);
+
 	cin.ignore();
 	string str;
-	gotoXY(4, 10); cout << "Nhap id hoac ten vat pham can tim ";
+	gotoXY(4, 10); cout << "Nhap thong tin can tim ";
 	gotoXY(4, 11); cout << char(175) << " "; getline(cin, str);
 	for (int i = 4; i < 50; i++) {
 		SetColor(64);
@@ -323,6 +332,8 @@ void startFunction() {
 				ok = 0;
 				break;
 			}
+			default:
+				break;
 			}
 	} while (ok);
 	

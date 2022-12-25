@@ -209,7 +209,13 @@ food &ListFood::setData() {
 	food f2;
 	string cate, name, type; int qty, cost;
 
-	f2.ID = "FK" + std::to_string(this->count + 1);
+	food* tmp = head;
+	while (tmp->next != NULL) {
+		tmp = tmp->next;
+	}
+	string tmpid = tmp->ID;
+
+	f2.ID = "FK" + std::to_string(stoi(tmpid.substr(2, tmpid.length() - '0')) + 1);;
 	/*--nhap loai--*/
 	gotoXY(4, 10); cout << "Nhap loai " << char(175) << " ";
 	getline(cin, cate); f2.setCategory(cate);
@@ -340,21 +346,30 @@ void ListFood::editData(string id, ListFood  L, int func) {
 }
 
 void ListFood::find(string str) {
-	
+	int xx1 = 4, yy1 = 14, xx2 = 26, yy2 = 14;
 	food* tmp = this->head;
+	bool check = false;
 	while (tmp != NULL)
 	{
-		if (tmp->getID() == str || tmp->getName() == str) {
-			gotoXY(4, 15); cout << "ID   :" << tmp->getID();
-			gotoXY(4, 16); cout << "Loai :" << tmp->getCategory();
-			gotoXY(4, 17); cout << "Ten  :" << tmp->getName();
-			gotoXY(26, 15); cout << "Don vi   :" << tmp->getType();
-			gotoXY(26, 16); cout << "So luong :" << tmp->getQty();
-			gotoXY(26, 17); cout << "Don gia  :" << tmp->getCost();
-			break;
+		if (tmp->getCategory() == str 
+			|| tmp->getID() == str 
+			|| tmp->getName() == str
+			|| tmp->getType() == str) {
+			gotoXY(xx1, ++yy1); cout << "ID   :" << tmp->getID();
+			gotoXY(xx1, ++yy1); cout << "Loai :" << tmp->getCategory();
+			gotoXY(xx1, ++yy1); cout << "Ten  :" << tmp->getName();
+			gotoXY(xx2, ++yy2); cout << "Don vi   :" << tmp->getType();
+			gotoXY(xx2, ++yy2); cout << "So luong :" << tmp->getQty();
+			gotoXY(xx2, ++yy2); cout << "Don gia  :" << tmp->getCost();
+			gotoXY(xx1, yy1+1); cout << "-----------------------------------------";
+			yy1 += 3, yy2 += 3;
+			check = true;
 		} // nếu tìm thấy index thì thoát khỏi vòng lặp
 			 // chưa tìm thấy thì tiếp tục duyệt phần tử kết tiếp
 		tmp = tmp->next;
+	}
+	if (check != true) {
+		gotoXY(4, 14); cout << "KHONG TIM THAY !";
 	}
 }
 void ListFood::setNewQtyFromOrder(string str,int data) {

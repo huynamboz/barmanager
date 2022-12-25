@@ -1,3 +1,2 @@
-﻿  manageUser.cpp
-D:\code\github\barmanager\manageUser.cpp(532,12): warning C4102: 'reInputsdt': unreferenced label
+﻿  analyst.cpp
   barmanager.vcxproj -> D:\code\github\barmanager\x64\Debug\barmanager.exe

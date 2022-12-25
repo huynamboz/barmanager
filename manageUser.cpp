@@ -742,6 +742,7 @@ void find_info_staff() {
 					<< " || Vi tri lam viec : " << listUser[i].getInfo("position")
 					<< " || Dia chi : " << listUser[i].getInfo("address")
 					<< " || SDT : " << listUser[i].getInfo("pNum");
+				gotoXY(xx2, ++yy); cout << "------------------------------------------------------------------------------------------------------------------";
 				check = true;
 			}
 		}

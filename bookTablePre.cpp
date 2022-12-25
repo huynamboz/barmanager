@@ -34,6 +34,9 @@ void readDatatableOrdered() {
 }
 
 void showData_bookpre() {
+	
+	
+
 	gotoXY(45, 1); cout << "id";
 	gotoXY(50, 1); cout << "Ten";
 	gotoXY(65, 1); cout << "so dien thoai";
@@ -57,6 +60,25 @@ void showData_bookpre() {
 		gotoXY(130, y); cout << Listtable[i].getInfo("ghichu");
 		y+=2;
 	}
+	SetColor(11);
+	for (int x = 44; x <= 145; x++) {
+		gotoXY(x, 0);
+		cout << char(196);
+		gotoXY(x, y);
+		cout << char(196);
+	}
+	SetColor(11);
+	for (int j = 0; j <= y; j++) {
+		gotoXY(44, j);
+		cout << char(179);
+		gotoXY(145, j);
+		cout << char(179);
+	}
+	SetColor(127);
+	gotoXY(44, 0); cout << char(218);
+	gotoXY(145, 0); cout << char(191);
+	gotoXY(145, y); cout << char(217);
+	gotoXY(44, y); cout << char(192);
 }
 
 
@@ -91,8 +113,8 @@ void clearInputDataOfBookPre() {
 
 void clear_menuBookPre_form() {
 	SetColor(0);
-	for (int x = 0; x < 40; x++) {
-		for (int y = 1; y < 10; y++) {
+	for (int x = 0; x < 45; x++) {
+		for (int y = 1; y < 13; y++) {
 			gotoXY(x, y); cout << char(219);
 		}
 	}
@@ -175,7 +197,8 @@ here:
 	SetColor(0);
 	for (int x = 0; x < 30; x++) {
 		gotoXY(x, TY+2); cout << char(219);
-	} SetColor(127); 
+	} SetColor(127);
+	gotoXY(1, TY + 2); cout << "                                              ";
 	gotoXY(1, TY + 2); cout << " Nhap ngay muon dat >"; cin >> d >> m >> y;
 	cin.ignore();
 	bool checkDay = true;
@@ -191,7 +214,7 @@ here:
 	else checkDay = false;
 	
 	if (checkDay == false) {
-		cout << " Nhap sai ngay !";
+		cout << "  Ngay dat khong hop le !";
 		goto here;
 	}
 	else cout << "                           ";
@@ -501,17 +524,18 @@ void editDataBookPre() {
 	do {
 		clear_menuBookPre_form();
 	//	clearInputDataOfBookPre();
+		int xx = 2, yy = 2;
 		SetColor(127);
-		gotoXY(0, 0);
-		cout << endl << " -- SUA THONG TIN -- ";
-		cout << endl << "1. Sua ten";
-		cout << endl << "2. Sua so dien thoai";
-		cout << endl << "3. Sua ngay dat";
-		cout << endl << "4. Doi ban";
-		cout << endl << "5. Sua ghi chu";
-		cout << endl << "0. Thoat";
+		gotoXY(xx, yy);
+		gotoXY(xx, ++yy); cout << " < SUA THONG TIN > ";
+		gotoXY(xx, ++yy); cout << "1. Sua ten";
+		gotoXY(xx, ++yy); cout << "2. Sua so dien thoai";
+		gotoXY(xx, ++yy); cout << "3. Sua ngay dat";
+		gotoXY(xx, ++yy); cout << "4. Doi ban";
+		gotoXY(xx, ++yy); cout << "5. Sua ghi chu";
+		gotoXY(xx, ++yy); cout << "0. Thoat";
 		int choose;
-		cout << endl << "- chon chuc nang > "; cin >> choose;
+		gotoXY(xx, ++yy); cout << "- chon chuc nang > "; cin >> choose;
 		switch (choose)
 		{
 		case 1: {
@@ -575,15 +599,15 @@ void menu_bookPre() {
 	int ok = 1;
 	do {
 		SetColor(127);
-		gotoXY(0, 0);
-		cout << endl << " -- CHUC NANG -- ";
-		cout << endl << "1. Dat ban";
-		cout << endl << "2. Chinh sua thong tin dat ban";
+		int xx = 2, yy = 2;
+		gotoXY(xx, yy); cout << " < CHUC NANG > ";
+		gotoXY(xx, ++yy); cout << "1. Dat ban";
+		gotoXY(xx, ++yy); cout << "2. Chinh sua thong tin dat ban";
 		//cout << endl << "3. Hien thi danh sach dat ban";
-		cout << endl << "3. Xoa thong tin dat ban";
-		cout << endl << "0. Thoat";
+		gotoXY(xx, ++yy); cout << "3. Xoa thong tin dat ban";
+		gotoXY(xx, ++yy); cout << "0. Thoat";
 		int choose; 
-		cout << endl << "- chon chuc nang > "; cin >> choose;
+		gotoXY(xx, ++yy); cout << "- chon chuc nang > "; cin >> choose;
 		switch (choose)
 		{
 		case 1:
